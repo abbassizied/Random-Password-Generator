@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RandomPasswordGen.MainPage">
+    <ScrollView>
+        <StackLayout Margin="20">
+            <Label Text="Customize your password" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+            <StackLayout 
+            Margin="20"
+            Orientation="Vertical">
+                <Label Text="Password Length" />
+                <Slider  x:Name="sldPwdLength"
+                        Value="{Binding PasswordLength, Mode=TwoWay}"      
+                        ValueChanged="OnSliderValueChanged"
+					    Maximum="128"
+					    Minimum="8" />
+                <Entry x:Name="PwdLength" 
+                        Text="{Binding Source={x:Reference sldPwdLength}, Path=Value, StringFormat='The Password Length is {0:F0}'}" 
+                        IsEnabled="False" />
+            </StackLayout>
+
+            <StackLayout 
+            Margin="20"
+            Orientation="Horizontal">
+                <CheckBox x:Name="chkUppercase"  
+                          IsChecked="true" 				  
+                          CheckedChanged="OnUppercaseCheckedChanged" />
+                <Label Text="Upper Letters" />
+            </StackLayout>
+
+            <StackLayout 
+            Margin="20"
+            Orientation="Horizontal">
+                <CheckBox x:Name="chkLowercase"  
+                          IsChecked="true" 				  
+                          CheckedChanged="OnLowercaseCheckedChanged" />
+                <Label Text="Lowercase Letters" />
+            </StackLayout>
+
+            <StackLayout 
+            Margin="20"
+            Orientation="Horizontal">
+                <CheckBox x:Name="chkNumbers"   
+                          IsChecked="true" 				  
+                          CheckedChanged="OnNumbersCheckedChanged" />
+                <Label Text="Numbers" />
+            </StackLayout>
+
+            <StackLayout 
+            Margin="20"
+            Orientation="Horizontal">
+                <CheckBox x:Name="chkSpecialChars"   
+                          IsChecked="true" 				  
+                          CheckedChanged="OnSpecialCharsCheckedChanged" />
+                <Label Text="Special Characters" />
+            </StackLayout>
+
+
+            <Button Text="Generate Password" 
+                    Clicked="OnGeneratePasswordClicked" />
+
+
+            <StackLayout 
+            Margin="20"
+            Orientation="Horizontal">
+                <Label Text="{Binding GeneratedPassword, StringFormat='The gen password is: {0:F0}'}"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
